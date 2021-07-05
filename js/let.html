@@ -1,0 +1,39 @@
+<!-- -------------let声明错误---------------- -->
+<script>
+  var name = "Nicholas";
+  let age = 26;
+</script>
+
+<script>
+  // 假设脚本不确定页面中是否已经声明了同名变量
+  // 那它可以假设还没有声明过
+  var name = "Matt";
+  // 这里没问题，因为可以被作为一个提升声明来处理
+  // 不需要检查之前是否声明过同名变量
+  let age = 36;
+  // 如果 age 之前声明过，这里会报错 ,在这个<script>标签开始就会报错，而不是执行到这里
+  //要是没有分开两个script标签，而是在一个script标签中，也是标签开始就会报错
+</script>
+
+<!-- -------------let声明错误try/catch 语句或 typeof 操作符也不能解决---------------- -->
+<script>
+  let name = "Nicholas";
+  let age = 36;
+</script>
+<script>
+  // 假设脚本不确定页面中是否已经声明了同名变量
+  // 那它可以假设还没有声明过
+  if (typeof name === "undefined") {
+    let name;
+  }
+  // name 被限制在 if {} 块的作用域内
+  // 因此这个赋值形同全局赋值
+  name = "Matt";
+  try {
+    console.log(age); // 如果 age 没有声明过，则会报错
+  } catch (error) {
+    let age;
+  }
+  // age 被限制在 catch {}块的作用域内 // 因此这个赋值形同全局赋值
+  age = 26;
+</script>
