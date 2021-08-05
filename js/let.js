@@ -21,9 +21,11 @@ let age; //SyntaxError;标识符age已经声明过了
 
 /*-------嵌套使用相同的标识符---------*/
 var myname = "Nicholas";
-console.log(myname); // 'Nicholas' if (true) {
-var myname = "Matt";
-console.log(myname); // 'Matt' }
+console.log(myname); // 'Nicholas'
+if (true) {
+  var myname = "Matt";
+  console.log(myname); // 'Matt'
+}
 
 let age = 30;
 console.log(age); // 30
